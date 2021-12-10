@@ -1,5 +1,4 @@
 def containerName="docker-pipeline"
-def tag="latest"
 def dockerHubUser="anujsharma1990"
 def httpPort="8090"
 
@@ -14,8 +13,7 @@ node {
             sh "docker login -u $dockerUser -p $dockerPassword"
 			sh "kubectl get deployments"
 			sh "helm list"
-			sh "helm upgrade --install ./counterwebapp --set image.name=${dockerHubAccount}/${containerName} --set image.tag=${tag}"
+			sh "helm upgrade --install ./counterwebapp --set image.name=${dockerHubUser}/${containerName} --set image.tag=${tag}"
         }
     }
-
 }
